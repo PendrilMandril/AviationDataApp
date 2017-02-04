@@ -1,22 +1,16 @@
 library(ggvis)
 
-# # For dropdown menu
-# actionLink <- function(inputId, ...) {
-#   tags$a(href='javascript:void',
-#          id=inputId,
-#          class='action-button',
-#          ...)
-# }
-
 fluidPage(
   titlePanel("Aviation data explorer"),
   fluidRow(
     column(3,
            wellPanel(
-             h4("Filter"),
+             h4("Select options"),
+             h5("This apps allows us to analyze easily the aviation data set. Select the parameters
+                to filter the data."),
+             sliderInput("year", "Year of the accident", 1982, 2017, value = c(1982, 2017)),
              sliderInput("fatalInjuries", "At least X deaths",
                          0, 350, 0, step = 1),
-             sliderInput("year", "Year of the accident", 1982, 2017, value = c(1982, 2017)),
              textInput("country", "Country name"),
              selectInput("aircraftDamage", "Damage of the aircraft",
                          c("All", "Destroyed", "Substantial", "Minor")),

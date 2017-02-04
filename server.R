@@ -2,8 +2,9 @@ library(ggplot2)
 library(dplyr)
 library(magrittr)
 library(lubridate)
+library(readr)
 
-flights <- readr::read_csv("AviationDataEnd2016UP.csv")
+flights <- read_csv("AviationDataEnd2016UP.csv")
 flights$Year <- year(flights$Event.Date) %>% as.integer()
 flights <- select(flights, Total.Fatal.Injuries, Year, Purpose.of.Flight,
                   Aircraft.Damage, Report.Status, Country, Aircraft.Category, Amateur.Built) 
