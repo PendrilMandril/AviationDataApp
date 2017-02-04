@@ -23,16 +23,16 @@ function(input, output) {
     if (input$purposeFlight != "All") {
       f <- f %>% filter(Purpose.of.Flight == input$purposeFlight)
     }
-    if (input$aircraftDamage != "All" & input$aircraftDamage != "") {
+    if (input$aircraftDamage != "All") {
       f <- f %>% filter(Aircraft.Damage == input$aircraftDamage)
     }
-    if (input$reportStatus != "All" & input$reportStatus != "") {
+    if (input$reportStatus != "All") {
       f <- f %>% filter(Report.Status == input$reportStatus)
     }
     if (input$country!= "All" & input$country != "") {
       f <- f %>% filter(Country == input$country)
     }
-    if (input$aircraftCategory != "All" & input$aircraftCategory != "") {
+    if (input$aircraftCategory != "All") {
       f <- f %>% filter(Aircraft.Category == input$aircraftCategory)
     }
     
@@ -41,7 +41,11 @@ function(input, output) {
   
   output$plot1 <- renderPlot({
     myFlights <- getFlights()
-    ggplot(myFlights, aes(x = Year)) + geom_bar(aes(fill = Amateur.Built), position = "stack")
+    ggplot(myFlights, aes(x = Year)) +
+      geom_bar(aes(fill = Amateur.Built), position = "stack") + 
+      xlab("Year") + 
+      ylab("Accidents")
+    
   })
   output$n_flights <- renderText({
     myFlights <- getFlights()
